@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "local-first-llm-rn-example",
+    "slug": "local-first-llm-rn-example",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "newArchEnabled": true,
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.example.localfirstllmrn" },
+    "android": { "package": "com.example.localfirstllmrn" }
+  }
+}

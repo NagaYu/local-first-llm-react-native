@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# NOTE: This workflow covers the CI-automatable surface only:
+#   - Biome lint
+#   - TypeScript typecheck
+#   - Jest unit tests (policy decision tree + backend request/response mapping)
+#
+# The `executorchBackend` end-to-end path wraps react-native-executorch, which
+# requires a real device or simulator with an ExecuTorch model actually loaded.
+# That verification is NOT automatable here and must be run manually — see
+# CONTRIBUTING.md ("Verifying the ExecuTorch backend on a real device").
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (Biome)
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Unit tests
+        run: pnpm test --ci --coverage
+
+      - name: Build
+        run: pnpm build

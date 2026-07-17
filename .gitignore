@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+
+# build output
+lib/
+
+# test / coverage
+coverage/
+
+# logs
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# misc
+.DS_Store
+*.tsbuildinfo
+.env
+.env.local
+
+# editor
+.idea/
+.vscode/
+*.swp
+
+# example app native/build artifacts
+example/node_modules/
+example/.expo/
+example/ios/Pods/
+example/android/.gradle/
+example/android/app/build/

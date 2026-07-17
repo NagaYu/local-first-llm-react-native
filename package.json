@@ -1,0 +1,118 @@
+{
+  "name": "local-first-llm-react-native",
+  "version": "0.1.0",
+  "description": "On-device vs. cloud routing policy for React Native LLM apps. The React Native sibling of local-first-llm, wrapping react-native-executorch as the on-device backend.",
+  "license": "MIT",
+  "author": "NagaYu",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NagaYu/local-first-llm-react-native.git"
+  },
+  "homepage": "https://github.com/NagaYu/local-first-llm-react-native#readme",
+  "bugs": {
+    "url": "https://github.com/NagaYu/local-first-llm-react-native/issues"
+  },
+  "keywords": [
+    "react-native",
+    "executorch",
+    "on-device-ai",
+    "hybrid-inference",
+    "llm",
+    "local-first"
+  ],
+  "source": "./src/index.ts",
+  "main": "./lib/commonjs/index.js",
+  "module": "./lib/module/index.js",
+  "types": "./lib/typescript/commonjs/src/index.d.ts",
+  "react-native": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/typescript/module/src/index.d.ts",
+        "default": "./lib/module/index.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/src/index.d.ts",
+        "default": "./lib/commonjs/index.js"
+      }
+    },
+    "./backends/executorch": {
+      "import": {
+        "types": "./lib/typescript/module/src/backends/executorch.d.ts",
+        "default": "./lib/module/backends/executorch.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/src/backends/executorch.d.ts",
+        "default": "./lib/commonjs/backends/executorch.js"
+      }
+    },
+    "./backends/openai-compatible": {
+      "import": {
+        "types": "./lib/typescript/module/src/backends/openai-compatible.d.ts",
+        "default": "./lib/module/backends/openai-compatible.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/src/backends/openai-compatible.d.ts",
+        "default": "./lib/commonjs/backends/openai-compatible.js"
+      }
+    },
+    "./backends/anthropic": {
+      "import": {
+        "types": "./lib/typescript/module/src/backends/anthropic.d.ts",
+        "default": "./lib/module/backends/anthropic.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/src/backends/anthropic.d.ts",
+        "default": "./lib/commonjs/backends/anthropic.js"
+      }
+    },
+    "./capability/builtin": {
+      "import": {
+        "types": "./lib/typescript/module/src/capability/builtin.d.ts",
+        "default": "./lib/module/capability/builtin.js"
+      },
+      "require": {
+        "types": "./lib/typescript/commonjs/src/capability/builtin.d.ts",
+        "default": "./lib/commonjs/capability/builtin.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": ["src", "lib", "!**/__tests__", "!**/__mocks__", "!**/*.test.ts", "!**/*.test.tsx"],
+  "scripts": {
+    "build": "bob build",
+    "prepare": "bob build",
+    "clean": "del-cli lib",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "typecheck": "tsc --noEmit -p tsconfig.test.json",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write ."
+  },
+  "peerDependencies": {
+    "react-native": ">=0.76.0",
+    "react-native-executorch": ">=0.9.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native-executorch": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-typescript": "^7.24.7",
+    "@biomejs/biome": "^1.9.4",
+    "@types/jest": "^29.5.12",
+    "babel-jest": "^29.7.0",
+    "del-cli": "^5.1.0",
+    "jest": "^29.7.0",
+    "react-native-builder-bob": "^0.40.0",
+    "typescript": "^5.6.3"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [["module", { "esm": true }], ["commonjs", { "esm": true }], "typescript"]
+  }
+}
