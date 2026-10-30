@@ -1,5 +1,10 @@
 # local-first-llm-react-native
 
+> Implementation example of local-first-llm for React Native
+> (react-native-executorch). The routing policy lives in the suite
+> core ([local-first-llm][web]); this repository shows one platform
+> implementation of it.
+
 [![npm version](https://img.shields.io/npm/v/local-first-llm-react-native.svg)](https://www.npmjs.com/package/local-first-llm-react-native)
 [![CI](https://github.com/NagaYu/local-first-llm-react-native/actions/workflows/ci.yml/badge.svg)](https://github.com/NagaYu/local-first-llm-react-native/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
@@ -10,7 +15,8 @@
 > which one should run it, using a task-type taxonomy, hard privacy rules,
 > device-capability awareness, and optional cost/latency budgets.
 
-It is the React Native sibling of [`local-first-llm`][web] (web) and
+It is the React Native implementation example of the suite core
+[`local-first-llm`][web] (web), alongside the Android implementation example
 [`local-first-llm-android`][android] (native Kotlin): the **same validated
 routing-policy design**, re-implemented independently for the React Native
 runtime.
@@ -141,7 +147,8 @@ success → `on-device-full`, absence/failure → `not-viable`. It is a **floor,
 a benchmark** — it can't distinguish "full" from "degraded" on its own. The
 `CapabilityProvider` interface is left open for a richer future provider (e.g. an
 RN bridge to a hardware-eligibility / Foundation-Models-aware signal). This is
-the same honest framing used by the built-in defaults in both sibling projects.
+the same honest framing used by the built-in defaults in the suite core and the
+Android implementation example.
 
 ## Fallback & resilience
 
@@ -154,10 +161,7 @@ request. It's configurable (`fallback: { enabled: false }`). Every result carrie
 
 Which ExecuTorch delegate and quantization you configure `react-native-executorch`
 with (XNNPACK, Core ML, Vulkan, …; 4-bit vs. 8-bit, SpinQuant/QLoRA, …) is a
-separate decision this library doesn't make. If you want help picking one for
-your target devices, [`executorch-matrix`][ematrix] (also by this author) is a
-handy workflow tool for that — it's an optional aid, not a dependency or
-integration here.
+separate decision this library doesn't make.
 
 ## Example
 
@@ -185,6 +189,13 @@ with no network calls; `decide()` is held to 100% branch coverage. The
 be verified in ordinary CI** — it needs a device. See
 [`CONTRIBUTING.md`](./CONTRIBUTING.md).
 
+## Local-first suite
+
+This repository is an implementation example in the local-first suite (React Native).
+
+- Suite core (routing policy): [local-first-llm][web]
+- Full list of suite repositories and their roles: [Suite map](https://github.com/NagaYu/local-first-llm#suite-map)
+
 ## License
 
 [MIT](./LICENSE) © NagaYu
@@ -192,4 +203,3 @@ be verified in ordinary CI** — it needs a device. See
 [web]: https://github.com/NagaYu/local-first-llm
 [android]: https://github.com/NagaYu/local-first-llm-android
 [rne]: https://github.com/software-mansion/react-native-executorch
-[ematrix]: https://github.com/NagaYu/executorch-matrix
